@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💲 Bitcoin Price Prediction 💰</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <header class="text-center mb-4">
+            <h1>💲 Bitcoin Price Prediction 💰</h1>
+            <p class="lead">Leverage historical data to forecast Bitcoin prices.</p>
+        </header>
+        
+        <section class="instructions">
+            <h4>Welcome to the Bitcoin Price Prediction Tool!</h4>
+            <p>This tool allows you to predict Bitcoin prices based on historical data. You can either manually enter the last closing prices or upload a CSV file containing the historical prices.</p>
+            <p><strong>How to Use:</strong></p>
+            <ul>
+                <li><strong>Time Step:</strong> Specify the number of past days to consider for prediction.</li>
+                <li><strong>Days to Predict:</strong> Enter the number of days you want to forecast into the future.</li>
+                <li><strong>Last Close Prices:</strong> Enter the last known Bitcoin prices as a comma-separated list or select the option to auto-fetch the latest prices.</li>
+                <li><strong>CSV Upload:</strong> Upload a CSV file with the historical closing prices. Make sure the file has a column named <code>closing_price</code>.</li>
+            </ul>
+        </section>
+        
+        <section class="sample-data mt-4">
+            <h5>CSV File Example</h5>
+            <p>Ensure your CSV file has the following format:</p>
+            <pre>
+closing_price
+29000.00
+29200.00
+29300.00
+29500.00
+</pre>
+            <p>The file should contain a column named <code>closing_price</code> with the historical Bitcoin closing prices.</p>
+        </section>
+        
+        <form method="POST" enctype="multipart/form-data" class="mt-4 mb-5">
+            <div class="form-group">
+                <label for="time_step">Time Step (Number of past days to consider): ⏳</label>
+                <input type="number" class="form-control" id="time_step" name="time_step" placeholder="e.g., 7" required>
+            </div>
+            <div class="form-group">
+                <label for="pred_days">Days to Predict: 🎯</label>
+                <input type="number" class="form-control" id="pred_days" name="pred_days" placeholder="e.g., 3" required>
+            </div>
+            <div class="form-group">
+                <label for="start_date">Start Date (For Visualization):</label>
+                <input type="date" class="form-control" id="start_date" name="start_date">
+            </div>
+            <div class="form-group">
+                <label for="end_date">End Date (For Visualization):</label>
+                <input type="date" class="form-control" id="end_date" name="end_date">
+            </div>
+            
+            <div class="form-group">
+                <label for="last_close_prices">Last Close Prices (comma-separated, shape must be equal to time step): ⏮</label>
+                <input type="text" class="form-control" id="last_close_prices" name="last_close_prices" placeholder="Enter prices or use auto-fetch">
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="auto_fetch" name="auto_fetch">
+                <label class="form-check-label" for="auto_fetch">Fetch latest prices automatically</label>
+            </div>
+            <div class="form-group">
+                <label for="csv_file">Upload CSV file 📚 with closing prices column:</label>
+                <input type="file" class="form-control-file" id="csv_file" name="csv_file">
+            </div>
+            
+            <div class="instructions">
+                <h4>Prediction Models Overview</h4>
+                
+                <h5>LSTM (Long Short-Term Memory)</h5>
+                <p><strong>What is it?</strong></p>
+                <ul>
+                    <li>LSTM is a type of Recurrent Neural Network (RNN) designed to recognize patterns in sequences of data.</li>
+                </ul>
+                <p><strong>How does it work?</strong></p>
+                <ul>
+                    <li>It remembers important information for long periods and can predict future values based on past data.</li>
+                </ul>
+                <p><strong>Use Case:</strong></p>
+                <ul>
+                    <li>Ideal for time series forecasting, such as predicting Bitcoin prices based on historical trends.</li>
+                </ul>
+
+                <h5>ARIMA (AutoRegressive Integrated Moving Average)</h5>
+                <p><strong>What is it?</strong></p>
+                <ul>
+                    <li>ARIMA is a statistical model used for forecasting time series data.</li>
+                </ul>
+                <p><strong>How does it work?</strong></p>
+                <ul>
+                    <li>It combines past values and past forecast errors to predict future values, adjusting for trends and seasonality.</li>
+                </ul>
+                <p><strong>Use Case:</strong></p>
+                <ul>
+                    <li>Useful for forecasting financial data, like Bitcoin prices, by analyzing historical price patterns.</li>
+                </ul>
+            </div>
+            
+            <div class="form-group">
+                <label for="model_choice">Choose Prediction Model: 🤖</label>
+                <select class="form-control" id="model_choice" name="model_choice">
+                    <option value="lstm">LSTM</option>
+                    <option value="arima">ARIMA</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Generate Prediction 📈</button>
+            <a href="{{ url_for('train') }}" class="btn btn-secondary">Train Custom Model 🛠️</a>
+        </form>
+
+        {% if historical_graph_html %}
+            <div class="graph-container">
+                <h3>Historical Bitcoin Prices</h3>
+                <div>{{ historical_graph_html|safe }}</div>
+            </div>
+        {% endif %}
+
+        {% if graph_html %}
+            <div class="graph-container">
+                <h3>Bitcoin Price Prediction</h3>
+                <div>{{ graph_html|safe }}</div>
+            </div>
+        {% endif %}
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

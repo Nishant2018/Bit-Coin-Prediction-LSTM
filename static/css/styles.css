@@ -1,0 +1,103 @@
+/* General Body Styling */
+body {
+    background-color: #f0f2f5; /* Light grey background for a clean look */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url('./3.jpeg'); /* Replace with the path to your image */
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-attachment: fixed; /* Fix the background image */
+}
+
+/* Heading Styling */
+h1 {
+    color: #004d99; /* Dark blue for a strong impact */
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* Container Styling */
+/* Container Styling */
+.container {
+    background: rgba(255, 255, 255, 0.7); /* Slightly transparent white */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd; /* Light grey border for a subtle definition */
+    margin: 20px auto; /* Center container and add margin for spacing */
+    max-width: 1200px; /* Increased max-width for a wider container */
+}
+
+
+/* Graph Container Styling */
+.graph-container {
+    padding: 20px;
+    background: #007bff; /* Bright blue background */
+    border-radius: 15px;
+    color: #ffffff;
+    margin-top: 20px;
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #28a745; /* Green background for positive action */
+    border-color: #28a745;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: #218838; /* Darker green for hover effect */
+    border-color: #1e7e34;
+}
+
+/* Instructions Section Styling */
+.instructions {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f8f9fa; /* Light grey background */
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color: #343a40; /* Dark text for readability */
+}
+
+/* Sample Data Section Styling */
+.sample-data {
+    background-color: #e2e6ea; /* Light blue-grey background */
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 1rem;
+    margin-top: 20px;
+    color: #343a40; /* Dark text for contrast */
+}
+
+/* Form Group Styling */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Form Control Styling */
+.form-control {
+    border-radius: 0.5rem;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    border-color: #ced4da; /* Light grey border */
+}
+
+.form-control-file {
+    border-radius: 0.5rem;
+}
+
+/* Form Check Styling */
+.form-check-label {
+    font-size: 0.9rem;
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #004d99; /* Dark blue footer for consistency */
+    color: #ffffff;
+}

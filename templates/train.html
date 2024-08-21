@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Training</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+    <style>
+        /* General Body Styling */
+        body {
+            background-color: #f0f2f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Heading Styling */
+        h1 {
+            color: #004d99;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        /* Container Styling */
+        .container {
+            background: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+        }
+        .background {
+            background-image: url('../static/css/1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        /* Form Group Styling */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Form Control Styling */
+        .form-control {
+            border-radius: 0.5rem;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+            border-color: #ced4da;
+        }
+
+        .form-control-file {
+            border-radius: 0.5rem;
+        }
+
+        /* Button Styling */
+        .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        /* Instructions Section Styling */
+        .instructions {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            color: #343a40;
+        }
+
+        /* Popup Notification Styling */
+        .notification {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            text-align: center;
+        }
+        .notification.show {
+            display: block;
+        }
+        .notification .loader {
+            border: 5px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 5px solid #007bff;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="container mt-5">
+            <h1 class="text-center mb-4">Train Your Custom Model</h1>
+            <div class="instructions">
+                <h4>Welcome to the Model Training Page!</h4>
+                <p>This page allows you to upload a CSV file containing your dataset to train a custom model. Follow the steps below to get started:</p>
+                <ul>
+                    <li><strong>Upload CSV File:</strong> Choose a CSV file with your training data. Ensure it contains the relevant columns required for training your model. The file size should not exceed 50MB, and it must be in CSV format. CSV file must have these columns (Date and closing_price)</li>
+                    <li><strong>Time Step:</strong> Specify the time step for your model. This parameter influences the training process, so ensure it matches your dataset's characteristics.</li>
+                    <li><strong>Submit:</strong> Click the <strong>Train Model</strong> button to start the training process. The system will process your file and train the model accordingly.</li>
+                </ul>
+                <p><strong>Note:</strong> Make sure your CSV file is formatted correctly and contains clean data for optimal model performance.</p>
+            </div>
+            <form id="trainingForm" method="POST" enctype="multipart/form-data" class="mt-4">
+                <div class="form-group">
+                    <label for="train_csv_file">Upload CSV file for training 📚:</label>
+                    <input type="file" class="form-control-file" id="train_csv_file" name="train_csv_file" accept=".csv" required>
+                </div>
+                <div class="form-group">
+                    <label for="time_step">Time Step:</label>
+                    <input type="number" class="form-control" id="time_step" name="time_step" placeholder="Enter time step" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Train Model 🤖</button>
+            </form>
+        </div>
+    </div>
+    <!-- Notification Popup -->
+    <div id="notification" class="notification">
+        <div id="notification-message">Please Wait!</div>
+        <div class="loader"></div>
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('trainingForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent form from submitting normally
+            
+            // Show notification
+            const notification = document.getElementById('notification');
+            notification.classList.add('show');
+            
+            // Simulate model training
+            setTimeout(function() {
+                // Hide loader and show success message
+                document.getElementById('notification-message').innerHTML = 'Model Trained Successfully ✔️';
+                document.querySelector('.loader').style.display = 'none';
+            }, 5000); // Simulate 5 seconds of training time
+        });
+    </script>
+</body>
+</html>
