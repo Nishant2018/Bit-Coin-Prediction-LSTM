@@ -5,7 +5,7 @@ from keras.models import Sequential
 from keras.layers import Dense, LSTM,Input
 from sklearn.preprocessing import MinMaxScaler
 import plotly.express as px
-from statsmodels.tsa.arima.model import ARIMA
+from statsmodels.tsa.arima.model import ARIMA  
 #from polygon import RESTClient
 import matplotlib.pyplot as plt
 import io
