@@ -8,7 +8,7 @@ Bitcoin is a decentralized digital currency that operates without a central auth
 Bitcoin's value has seen significant fluctuations over time, making it a popular asset for traders and investors. The purpose of this web application is to predict future Bitcoin prices using historical data and advanced machine learning models.
 
 ## How to Run This Flask Web App       
-   
+      
 ### Prerequisites
 Before running the Flask web application, make sure you have the following installed on your system:
 - Python 3.x
