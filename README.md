@@ -6,7 +6,7 @@ Bitcoin is a decentralized digital currency that operates without a central auth
 ![Bitcoin](https://github.com/Nishant2018/Bit-Coin-Prediction-LSTM/blob/main/static/css/1.jpg)
 
 Bitcoin's value has seen significant fluctuations over time, making it a popular asset for traders and investors. The purpose of this web application is to predict future Bitcoin prices using historical data and advanced machine learning models.
-
+    
 ## How to Run This Flask Web App       
       
 ### Prerequisites
